@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitchcoin | Монета пацанов</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gopnik-yellow: #FFD700;
+            --gopnik-red: #FF0000;
+            --gopnik-black: #000000;
+            --gopnik-gray: #333333;
+            --gopnik-light: #AAAAAA;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: var(--gopnik-black);
+            color: var(--gopnik-yellow);
+            background-image: url('1.png');
+            background-size: cover;
+            background-attachment: fixed;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.85);
+            border: 4px solid var(--gopnik-yellow);
+            border-radius: 0;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://i.imgur.com/X3mWz7g.jpg') no-repeat;
+            background-size: 30%;
+            background-position: right bottom;
+            opacity: 0.1;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 3px dashed var(--gopnik-yellow);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: repeating-linear-gradient(
+                45deg,
+                var(--gopnik-yellow),
+                var(--gopnik-yellow) 10px,
+                var(--gopnik-red) 10px,
+                var(--gopnik-red) 20px
+            );
+        }
+        
+        .logo {
+            font-size: 4.5rem;
+            margin: 0;
+            color: var(--gopnik-yellow);
+            text-shadow: 3px 3px 0 var(--gopnik-red), 
+                         6px 6px 0 rgba(255, 0, 0, 0.5);
+            transform: rotate(-5deg);
+            animation: logoFloat 3s ease-in-out infinite alternate;
+            display: inline-block;
+        }
+        
+        @keyframes logoFloat {
+            from { transform: rotate(-5deg) translateY(0); }
+            to { transform: rotate(-5deg) translateY(-10px); }
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 0 var(--gopnik-red);
+            margin: 10px 0;
+            color: var(--gopnik-yellow);
+            letter-spacing: 1px;
+        }
+        
+        h2 {
+            color: var(--gopnik-red);
+            font-size: 2rem;
+            text-shadow: 1px 1px 0 var(--gopnik-yellow);
+            margin: 20px 0 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gopnik-red), var(--gopnik-yellow));
+        }
+        
+        .price-ticker {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 2px solid var(--gopnik-yellow);
+            padding: 15px;
+            margin: 20px auto;
+            width: fit-content;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .price {
+            font-size: 2rem;
+            color: #00FF00;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+            text-shadow: 0 0 5px #00FF00;
+            animation: blink 1s step-end infinite;
+        }
+        
+        @keyframes blink {
+            50% { opacity: 0.7; }
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--gopnik-red);
+            color: var(--gopnik-yellow);
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-radius: 0;
+            margin: 15px 5px;
+            border: 2px solid var(--gopnik-yellow);
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn:hover {
+            background-color: var(--gopnik-yellow);
+            color: var(--gopnik-red);
+            transform: translateY(-3px);
+            box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .btn:hover::after {
+            left: 100%;
+        }
+        
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 30px 0;
+            gap: 20px;
+        }
+        
+        .feature {
+            flex: 1 1 300px;
+            background-color: rgba(255, 215, 0, 0.1);
+            padding: 20px;
+            border: 1px solid var(--gopnik-yellow);
+            border-radius: 0;
+            position: relative;
+            transition: all 0.3s ease;
+            min-height: 200px;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+            background-color: rgba(255, 215, 0, 0.15);
+        }
+        
+        .feature h3 {
+            color: var(--gopnik-yellow);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed var(--gopnik-yellow);
+            padding-bottom: 5px;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--gopnik-red);
+        }
+        
+        .team {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .team-member {
+            flex: 1 1 250px;
+            background-color: rgba(255, 0, 0, 0.1);
+            padding: 20px;
+            border: 1px solid var(--gopnik-red);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .team-member:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+        }
+        
+        .team-member::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gopnik-red), var(--gopnik-yellow));
+        }
+        
+        .member-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid var(--gopnik-yellow);
+            margin: 0 auto 15px;
+            background-color: var(--gopnik-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .member-name {
+            font-weight: bold;
+            font-size: 1.3rem;
+            color: var(--gopnik-yellow);
+            margin-bottom: 5px;
+        }
+        
+        .member-role {
+            color: var(--gopnik-red);
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        
+        form {
+            background-color: rgba(51, 51, 51, 0.7);
+            padding: 30px;
+            border: 2px solid var(--gopnik-yellow);
+            margin: 30px 0;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--gopnik-yellow);
+            font-weight: bold;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--gopnik-gray);
+            border: 1px solid var(--gopnik-yellow);
+            color: white;
+            font-size: 1rem;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--gopnik-red);
+            box-shadow: 0 0 5px var(--gopnik-red);
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 3px dashed var(--gopnik-yellow);
+            margin-top: 30px;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .social-link {
+            color: var(--gopnik-yellow);
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            color: var(--gopnik-red);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            color: var(--gopnik-light);
+            font-size: 0.9rem;
+        }
+        
+        .advert {
+            background-color: rgba(255, 0, 0, 0.2);
+            border-left: 5px solid var(--gopnik-yellow);
+            padding: 15px;
+            margin: 20px 0;
+            position: relative;
+            animation: advertPulse 2s infinite;
+        }
+        
+        @keyframes advertPulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 215, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+        }
+        
+        .advert::before {
+            content: "ВАЖНО!";
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background-color: var(--gopnik-yellow);
+            color: var(--gopnik-black);
+            padding: 0 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .tokenomics {
+            width: 100%;
+            height: 300px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--gopnik-yellow);
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .roadmap {
+            margin: 30px 0;
+        }
+        
+        .roadmap-item {
+            display: flex;
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 50px;
+        }
+        
+        .roadmap-item::before {
+            content: "";
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--gopnik-red), var(--gopnik-yellow));
+        }
+        
+        .roadmap-date {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            background-color: var(--gopnik-red);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
+            border: 2px solid var(--gopnik-yellow);
+        }
+        
+        .roadmap-content {
+            background-color: rgba(51, 51, 51, 0.7);
+            padding: 20px;
+            border: 1px solid var(--gopnik-yellow);
+            flex: 1;
+        }
+        
+        .roadmap-content h3 {
+            color: var(--gopnik-yellow);
+            margin-bottom: 10px;
+        }
+        
+        .partner:hover {
+            transform: scale(1.05);
+            background-color: rgba(255, 215, 0, 0.1);
+        }
+        
+        .partners {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .partner {
+            flex: 0 0 300px;
+            min-height: 200px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--gopnik-yellow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .partner img {
+            max-width: 100%;
+            max-height: 150px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+        
+        .partner-name {
+            margin-top: 15px;
+            color: var(--gopnik-yellow);
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .floating-gopnik {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 100px;
+            height: 100px;
+            background-image: url('9.png');
+            background-size: cover;
+            border-radius: 50%;
+            border: 3px solid var(--gopnik-yellow);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0); }
+        }
+        
+        .floating-gopnik:hover {
+            transform: scale(1.1) rotate(10deg);
+            animation: none;
+        }
+        
+        .gopnik-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1001;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background-color: var(--gopnik-black);
+            border: 3px solid var(--gopnik-yellow);
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            animation: modalAppear 0.5s ease-out;
+        }
+        
+        @keyframes modalAppear {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: var(--gopnik-yellow);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .close-modal:hover {
+            color: var(--gopnik-red);
+        }
+        
+        .marquee {
+            white-space: nowrap;
+            overflow: hidden;
+            box-sizing: border-box;
+            background-color: var(--gopnik-red);
+            color: var(--gopnik-yellow);
+            padding: 10px 0;
+            font-weight: bold;
+            position: relative;
+            margin: 20px 0;
+            border-top: 2px solid var(--gopnik-yellow);
+            border-bottom: 2px solid var(--gopnik-yellow);
+        }
+        
+        .marquee span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 15s linear infinite;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+        
+        .counter {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .counter-item {
+            background-color: var(--gopnik-black);
+            border: 2px solid var(--gopnik-yellow);
+            padding: 10px 15px;
+            min-width: 80px;
+            text-align: center;
+        }
+        
+        .counter-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--gopnik-yellow);
+        }
+        
+        .counter-label {
+            font-size: 0.8rem;
+            color: var(--gopnik-light);
+        }
+        
+        .telegram-btn {
+            display: inline-block;
+            background-color: #0088cc;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .telegram-btn:hover {
+            background-color: #006699;
+            transform: translateY(-2px);
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 3rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .price {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+            
+            .feature {
+                flex: 1 1 100%;
+            }
+            
+            .team-member {
+                flex: 1 1 100%;
+            }
+            
+            .partner {
+                flex: 1 1 100%;
+                min-height: 150px;
+            }
+            
+            .partner img {
+                max-height: 100px;
+            }
+            
+            .floating-gopnik {
+                width: 70px;
+                height: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="marquee">
+        <span>🚨 ВНИМАНИЕ! Bitchcoin взлетает! Успей купить пока не поздно! 🚨 Продажи идут только у проверенных пацанов! 🚨 Не доверяй левым обменникам! 🚨</span>
+    </div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">💊 Bitchcoin</div>
+            <h1>КРИПТА НАСТОЯЩИХ ПАЦАНОВ</h1>
+        </header>
+        
+        <section>
+            <h2>ЧЁ ЗА МОНЕТА?</h2>
+            <p>Bitchсoin — это не просто криптовалюта, это образ жизни настоящих пацанов с района. Мы не какие-то там лохи с образованием , у нас все по понятиям!</p>
+         
+            
+            <div class="advert">
+                <p>ТОЛЬКО СЕГОДНЯ! При покупке от 100,000 Bitchcoin — бесплатный гоп-стоп  от дяди Жоры </p>
+            </div>
+        </section>
+        
+        <section>
+            <h2>ПОЧЕМУ BITCHCOIN?</h2>
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">💪</div>
+                    <h3>КРЕПКИЙ КАК СТОЯК ДЕДА МАКСИМА</h3>
+                    <p>Наш курс держится крепче, чем дед Максим после третьей бутылки портвейна. Никаких слабых мест</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">👑</div>
+                    <h3>ПО ПОНЯТИЯМ</h3>
+                    <p>Слово пацана - ВСЕ ЧЕСТНО!</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🚀</div>
+                    <h3>ВЗЛЕТ ГАРАНТИРУЕМ</h3>
+                    <p>Курс растет быстрее, чем пацан после удачного гоп-стопа. Не проспи!</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>МЕНТЫ НЕ ВЗЛОМАЮТ</h3>
+                    <p>Наша безопасность крепче, чем дружба пацанов после совместной отсидки.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💰</div>
+                    <h3>НАВАР ОГРОМНЫЙ</h3>
+                    <p>Стекишь Bitchcoin — жиреешь быстрее, чем пацан на халявном пиве.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🤝</div>
+                    <h3>СВОЯ БРАТВА</h3>
+                    <p>Вступаешь в нашу крипто-банду — получаешь крышу и поддержку.</p>
+                </div>
+            </div>
+        </section>
+        
+       <section id="tokenomics">
+    <h2>ТОКЕНОМИКА</h2>
+    <div class="tokenomics">
+        <canvas id="tokenomicsChart" width="100%" height="100%"></canvas>
+    </div>
+    
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('tokenomicsChart').getContext('2d');
+    const tokenomicsChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Ликвидность', 'Команда'],
+            datasets: [{
+                data: [77, 23],
+                backgroundColor: [
+                    '#FFD700', // желтый
+                    '#FF0000'  // красный
+                ],
+                borderColor: [
+                    '#000000',
+                    '#000000'
+                ],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'right',
+                    labels: {
+                        color: '#FFD700',
+                        font: {
+                            size: 14
+                        }
+                    }
+                },
+
+            }
+        }
+    });
+</script>
+        
+        <section id="roadmap">
+            <h2>ДОРОЖНАЯ КАРТА</h2>
+            <div class="roadmap">
+                <div class="roadmap-item">
+                    <div class="roadmap-date">Q1</div>
+                    <div class="roadmap-content">
+                        <h3>НАЧАЛО</h3>
+                        <ul>
+                            <li>Создание ларька </li>
+                            <li>Первые продажи в подворотнях</li>
+                            <li>Договор с местными авторитетами</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-date">Q2</div>
+                    <div class="roadmap-content">
+                        <h3>РАСКРУТКА</h3>
+                        <ul>
+                            <li>Партнерство с ларьком "Семки-Пиво"</li>
+                            <li>Первая разборка с конкурентами за район </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-date">Q3</div>
+                    <div class="roadmap-content">
+                        <h3>ХАЙП</h3>
+                        <ul>
+                            <li>Мемы в пабликах "Подслушано у пацанов"</li>
+                            <li>Гоп-стоп туры по городам</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-date">Q4</div>
+                    <div class="roadmap-content">
+                        <h3>ДОМИНИРОВАНИЕ</h3>
+                        <ul>
+                            <li>Признание крипто-авторитетами</li>
+                            <li>Собственный район</li>
+                            <li>Покупка местного ТЦ под штаб</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="buy">
+            <h2>КАК ВПАРИТЬСЯ?</h2>
+            <p>Купить Bitchcoin можно только у проверенных пацанов. Официальные точки:</p>
+            
+            <div class="features">
+                <div class="feature">
+                    <h3>ОБМЕННИКИ</h3>
+                    <ul>
+                        <li>ValeraExchange(TON →  семки → Bitchcoin )</li>
+                        <li>Ларёк "Семки-Пиво-Крипта"</li>
+                    </ul>
+                </div>
+                <div class="feature">
+                    <h3>ОНЛАЙН</h3>
+                    <ul>
+                        <li><a href="https://t.me/bitchcoine" class="telegram-btn" target="_blank">Перейти в Telegram</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="advert">
+                <p>⚠ ВНИМАНИЕ! Не доверяйте левым обменникам! Настоящий Bitchcoin пахнет семками и имеет характерный привкус подворотни!</p>
+            </div>
+        </section>
+        
+        <section id="team">
+            <h2>НАША БРАТВА</h2>
+            <div class="team">
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="2.png" alt="Seriy">
+                    </div>
+                    <div class="member-name">СЕРЫЙ</div>
+                    <p>Бывший сисадмин ПТУ, майнил битки в компьютерном классе. Собирал фермы из советских калькуляторов.</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="3.png" alt="Kostyan">
+                    </div>
+                    <div class="member-name">КОСТЯН</div>
+                    <p>Мастер по созданию хайпа. Умеет красиво материться на 5 языках.</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="4.png" alt="Chuhan">
+                    </div>
+                    <div class="member-name">ЧУШПАН</div>
+                    <p>Обеспечивает безопасность сети. Ни один хакер не выдержал его взгляда.</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="5.png" alt="Lenok">
+                    </div>
+                    <div class="member-name">ПСИХ</div>
+                    <p>Главный стресс-тестер сети. Когда он заходит в чат, токены сами начинают расти "от греха подальше"</p>
+                </div>
+            </div>
+        </section>
+        
+<section>
+    <h2>НАШИ ПАРТНЁРЫ</h2>
+    <div class="partners">
+        <div class="partner">
+            <img src="8.png" alt="Семки ОПТОМ">
+            <div class="partner-name">Семки ОПТОМ</div>
+        </div>
+        <div class="partner">
+            <img src="6.png" alt="Ларёк с пивком ">
+            <div class="partner-name">Ларёк с пивком</div>
+        </div>
+        <div class="partner">
+            <img src="7.png" alt="Местный район ">
+            <div class="partner-name">Местный район</div>
+        </div>
+    </div>
+</section>
+        
+        <section>
+            <h2>ЗАПИСЬ В БРАТВУ</h2>
+            <p>Хочешь в нашу крипто-банду? Заполни анкету и жди звонка (может не прийти):</p>
+            
+            <form id="joinForm">
+                <div class="form-group">
+                    <label for="nickname">ТВОЯ КЛИЧКА</label>
+                    <input type="text" id="nickname" required placeholder="Как к тебе обращаться?">
+                </div>
+                
+                <div class="form-group">
+                    <label for="district">ТВОЙ РАЙОН</label>
+                    <input type="text" id="district" required placeholder="Где твои корни?">
+                </div>
+                
+                <div class="form-group">
+                    <label for="skills">ЧЕМ ПОЛЕЗЕН?</label>
+                    <select id="skills" required>
+                        <option value="">Выбери свои скиллы</option>
+                        <option value="trade">Перепродажа сигарет</option>
+                        <option value="fight">Разборки</option>
+                        <option value="meme">Создание мемов</option>
+                        <option value="other">Другое (напишешь ниже)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="about">РАССКАЖИ О СЕБЕ</label>
+                    <textarea id="about" placeholder="Чем докажешь, что ты не лох?"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" required> Слово пацана
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn">ОТПРАВИТЬ ЗАЯВКУ</button>
+            </form>
+        </section>
+        
+        <footer>
+            <div class="social-links">
+                <a href="https://t.me/bitchcoine" class="social-link" target="_blank">TG</a>
+                <a href="https://www.tiktok.com/@bit4coine" class="social-link">TIKTOK</a>
+            </div>
+            
+            <p class="copyright">© 2025 Bitchcoin</p>
+            <p class="copyright">Все права защищены по понятиям.</p>
+        </footer>
+    </div>
+    
+    <div class="floating-gopnik" id="floatingGopnik"></div>
+    
+    <div class="gopnik-modal" id="gopnikModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h2>ЧТО СМОТРИШЬ, ЛОХ?</h2>
+            <p>Ты уже купил Bitchcoin или как? Не тяни резину, курс растет!</p>
+            
+            <a href="https://t.me/bitchcoine" class="btn" id="modalBuyBtn">КУПИТЬ BITCHCOIN</a>
+        </div>
+    </div>
+    
+    <script>
+        // Floating gopnik interaction
+        const floatingGopnik = document.getElementById('floatingGopnik');
+        const gopnikModal = document.getElementById('gopnikModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalBuyBtn = document.getElementById('modalBuyBtn');
+        
+        floatingGopnik.addEventListener('click', () => {
+            gopnikModal.style.display = 'flex';
+        });
+        
+        closeModal.addEventListener('click', () => {
+            gopnikModal.style.display = 'none';
+        });
+        
+        modalBuyBtn.addEventListener('click', () => {
+            gopnikModal.style.display = 'none';
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (event) => {
+            if (event.target === gopnikModal) {
+                gopnikModal.style.display = 'none';
+            }
+        });
+        
+        // Fake price ticker
+        const priceElement = document.createElement('div');
+        priceElement.className = 'price';
+        priceElement.textContent = '$1.1 ▲';
+        
+        const priceTicker = document.createElement('div');
+        priceTicker.className = 'price-ticker';
+        priceTicker.innerHTML = '<h3>ТЕКУЩИЙ КУРС ПИВА</h3>';
+        priceTicker.appendChild(priceElement);
+        
+        document.querySelector('header').appendChild(priceTicker);
+        
+
+        let price = 1;
+        setInterval(() => {
+            const change = (Math.random() - 0.3) * 0.1;
+            price = Math.max(0.3, price + change);
+            const direction = change >= 0 ? '▲' : '▼';
+            priceElement.textContent = `$${price.toFixed(5)} ${direction}`;
+        }, 3000);
+    </script>
+</body>
+</html>
